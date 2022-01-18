@@ -1,0 +1,55 @@
+.dropbtn{
+    background-color: "#0e70f0";
+
+}
+body{
+    background-color: "#0a5cc7";
+}
+
+.margins{
+    margin-right:20px;
+}
+.cblue{
+    color:blue;
+}
+.cwhite{
+    color: white;
+}
+li{
+    margin-right:50px;
+}
+.head{
+    color:white;
+}
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center
+  }
+
+img {
+    max-width: 100%
+}
+
+.image {
+    flex-basis: 160%
+}
+
+.text {
+    font-size: 20px;
+    padding-left: 20px;
+    background-color:#d3d5db;
+}
+.gree{
+background-color: #659DBD;
+}
+.white{
+    background-color:#d3d5db;
+}
+p{
+    padding:25px;
+
+}
+.cearth{
+    color: #fcfbfe;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <title>Landon Favorites</title>
+    </head>
+    <body style="background-image: url('https://wallpaperaccess.com/full/19602.jpg');background-attachment: fixed;background-size: cover;">
+    <h1 class="cearth" style="text-align:center">Favorites</h1>
+    <ul class="nav justify-content-center cearth">
+        <li class="nav-item">
+            <a class="nav-link cearth" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link cearth" href="sports.html">Sports</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link cearth" href="hobbies.html">Hobbies</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link cearth" href="favorites.html">Favorites</a>
+            </li>
+        </ul>
+        <h4 style="position:relative; top:260px;color: #dad9dc;margin-left:20px">Ask about a favorite something</h4>
+        <form style = "position:relative; margin-left:100px;top:280px;color:#dad9dc"type="text">
+            <input type="radio" name="fav_language" value="book">Book<br>
+            <input type="radio" name="fav_language" value="movie">Movie<br>
+            <input type="radio" name="fav_language" value="video game">Video Game<br>
+            <input type="radio" name="fav_language" value="subject">School Subject<br>
+            <input type="radio" name="fav_language" value="youtuber">Youtuber<br>
+            <button type = "button"id="check">Check Answer</button>
+        </form>
+        <h4 style='text-align:right; margin-right:100px;color:#dad9dc'>Answers</h4>
+        <p id="answer"style='text-align:right; margin-right:30px;color:#dad9dc;margin-left:1400px'>Favorite answers will appear here</p>
+        <script>
+            const submit=document.querySelector("#check");
+            const answer=document.querySelector("answer");
+            let ans;
+            submit.addEventListener("click", function(){
+                let favorite=document.getElementsByName("fav_language");
+                for(i =0; i < favorite.length; i++) {
+                    if (favorite[i].checked){
+                        if(favorite[i].value == "movie")
+                        {
+                            ans="My favorite movie is Shrek 2. It is a masterpiece with funny jokes, amazing music, and a great storyline.";
+                        }else if(favorite[i].value =="book"){
+                            ans="My favorite book is The Way of Kings by Brandon Sanderson. It is an amazing fantasy epic set in a unique world that kept me hooked.";
+                        }else if(favorite[i].value == "video game"){
+                            ans="My favorite video game is Minecraft. It allows you to use your creativity and make what you want, and also has servers offering many multiplayer opportunities.";
+                        }else if(favorite[i].value == "subject"){
+                            ans="My favorite school subject is math because it is fun to solve the problems and requires lots of problem solving and logic.";
+                        }else if(favorite[i].value == "youtuber"){
+                            ans="My favorite youtuber is Veritasium. He creates very informative videos on math and physics that challenge the way you think about things.";
+                        }
+                        document.getElementById("answer").innerHTML=ans;
+                    }
+                }
+
+            });
+
+        </script>
+    </body>
+</html>

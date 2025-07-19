@@ -1,0 +1,87 @@
+---
+title: "About Me"
+shortTitle: "About"
+category: "About"
+color: "black"
+cover: "./basketball.JPG"
+slug: '/about'
+date: "2025-05-03"
+---
+
+import { Box, Heading, Text, Grid } from 'theme-ui'
+import { motion } from 'framer-motion'
+
+<motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 0.6 }}
+>
+  <Heading as="h1" sx={{ mb: 4, fontSize: [5, 6] }}>
+    👋 Hey there!
+  </Heading>
+</motion.div>
+
+<Box sx={{ maxWidth: 700, mx: 'auto', fontSize: [2, 3], lineHeight: '1.7' }}>
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+  >
+    <Text>
+      I'm Landon — a student-athlete at MIT where I compete in cross country and track. I love staying active, and wherever I am, my running shoes will never be far away.
+    </Text>
+  </motion.div>
+
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: 0.2 }}
+    sx={{ mt: 4 }}
+  >
+    <Text>
+      I'm proudly from Minnesota 🌲⛵, where the lakes are plentiful, the winters are cold, and the summers are perfect for ice cream. The Midwest spirit will always be part of who I am.
+    </Text>
+  </motion.div>
+
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: 0.4 }}
+    sx={{ mt: 4 }}
+  >
+    <Text>
+      Outside of school and training, you'll catch me messing around on a basketball court or a pickleball court. I won’t say I’m good, but I make my presence known on the court, whether for good or bad.
+    </Text>
+  </motion.div>
+
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: 0.6 }}
+    sx={{ mt: 4 }}
+  >
+    <Text>
+      I also love board games and chess ♟️— giving me an opportunity to relax and bond with family and friends. Cousin Catan is always a spectacle.
+    </Text>
+  </motion.div>
+
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: 0.8 }}
+    sx={{ mt: 5 }}
+  >
+    <Text sx={{ mb: 3 }}>Anyways, here are some photos to give you a sense of who I am!</Text>
+    <Grid columns={[1, 2, 3]} gap={4}>
+      <img src="/about_images/basketball.JPG" alt="Basketball" style={{ width: "100%", borderRadius: "12px" }} />
+      <img src="/about_images/boatcruise.JPG" alt="Boat Cruise" style={{ width: "100%", borderRadius: "12px" }} />
+      <img src="/about_images/chess.JPG" alt="Chess" style={{ width: "100%", borderRadius: "12px" }} />
+      <img src="/about_images/IMG_6623.jpg" alt="Winter" style={{ width: "100%", borderRadius: "12px" }} />
+      <img src="/about_images/IMG_7048.jpg" alt="Falling" style={{ width: "100%", borderRadius: "12px" }} />
+      <img src="/about_images/IMG_8915.jpg" alt="Snowball" style={{ width: "100%", borderRadius: "12px" }} />
+      <img src="/about_images/IMG_9005.jpg" alt="Cows" style={{ width: "100%", borderRadius: "12px" }} />
+      <img src="/about_images/IMG_9648.PNG" alt="Halloween" style={{ width: "100%", borderRadius: "12px" }} />
+      <img src="/about_images/IMG_9839.jpg" alt="Titanic" style={{ width: "100%", borderRadius: "12px" }} />
+    </Grid>
+  </motion.div>
+</Box>

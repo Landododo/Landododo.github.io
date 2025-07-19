@@ -6,6 +6,7 @@
   "author": "LekoArts",
   "license": "0BSD",
   "starter-name": "gatsby-starter-portfolio-jodie",
+  "homepage": "https://landododo.github.io/website",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",

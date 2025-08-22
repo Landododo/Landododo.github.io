@@ -1,0 +1,38 @@
+---
+title: "GPMustic - Transformer based generative music AI"
+shortTitle: "GPMustic"
+category: "Project"
+color: "white"
+cover: "./aimusic.png"
+slug: "/gpmustic/"
+date: "2025-08-21"
+---
+This was my first time seriously messing around with PyTorch and AI. I had a high-level view of the architcture from watching
+3Blue1Brown videos on transformers and from taking a mini deep learning class, but had never actually coded a model for any purpose. 
+
+I decided I wanted to try making a generative music model because I have spent a lot of time playing the piano for fun and competetively,
+and I had heard that there now existed generative music models. I created a simple pygame piano GUI to view and hear the piano as you play the seed
+notes, created a model using the publicly available MAESTRO dataset, and trained the model on my laptop for a couple days (not really utilizing the full
+power of the dataset due to computer lacking a GPU and the dataset amounting to 20 million samples).
+## Listen to my project 🎶
+Chromatic scale as input (first 8 seconds):
+<audio controls>
+  <source src="/gpmustic/chromatic.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+Happy birthday as input (first 6 seconds):
+<audio controls>
+  <source src="/gpmustic/generated_output2.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+## Takeaways
+So I learned a few things from this project:
+- Tools like PyTorch are very powerful and make it easy to abstract away the actual model and its training
+- Actually obtaining data and processing that data (tokenization) are large parts of machine learning
+- Machine learning takes A LOT of compute and time (my laptop with no GPU ran for 2 days and the model was not able to train on the whole dataset because of the amount of computation needed for the 20 million samples)
+- Machine learning models need to be modified depending on system specs (VRAM, GPU, CPU, RAM)
+
+Overall, this project was a great introduction to PyTorch and machine learning, and I hope that I will learn more in my machine learning class this semester. I am most interested
+in the actual relevance of computer hardware and architcture in machine learning, and this project helped expose how important hardware is in machine learning.
+
+See code here: https://github.com/Landododo/gpmustic

@@ -1,0 +1,99 @@
+---
+title: "SWOT Research - Spatiotemporal Inpainting"
+shortTitle: "SWOT Research"
+slug: "/swot-research"
+category: "Project"
+color: "white"
+cover: "./swotsatellite.jpg"
+date: "2026-05-30"
+---
+
+
+## Introduction
+5/30/2026. This project revolves around the Surface Water and Ocean Topography (SWOT) satellite, which collects unprecedented high resolution ocean data. However, as it is a
+single satellite it is only guaranteed to go over every swath of ocean once every 21 days, providing us with high spatial resolution but very 
+low temporal resolution. In this project, I aim to increase this temporal resolution through spatiotemporal inpainting of the data, estimating the state of the ocean
+on the intervening days between satellite passes. This project focuses on SSH data, and started with LLC4320 simulation
+data before being verified using SWOT data. 
+
+<a 
+  href="https://github.mit.edu/lando/BRG-Diffusion-SWOT-codebase" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  style={{ 
+    display: 'inline-block', 
+    padding: '10px 20px', 
+    backgroundColor: '#24292e', 
+    color: 'white', 
+    textDecoration: 'none', 
+    borderRadius: '6px',
+    fontWeight: 'bold',
+    marginBottom: '20px'
+  }}
+>
+  💻 View Source on GitHub
+</a>
+## LLC4320 Data Exploration
+The project started with LLC4320 data exploration. Going into the project it was thought that we could use a diffusion model
+to inpaint SSH data directly, but we quickly realized this was a much harder task than previously thought. Through data exploration we
+discovered that the SSH means vary significantly with the tides. 
+<img 
+  src="/mean_timeseries_800_800.png" 
+  alt="Mean variation in SSH data" 
+  style={{ width: '60%', margin: '0 auto', display: 'block' }} 
+/>
+
+Thus we decided to look at approaching the problem with a 2-phase approach: first using a fourier-based model to isolate and subtract tides
+from the data, and then using a generative diffusion model to inpaint the anomalies, which would include submesoscale and mesoscale events. 
+## The 2-Phase Physics-Informed Approach
+The initial approach was to sample the data in sync with the peak of the dominant K2 lunar tide. This gave better results by interpolating
+SSH data in sync with this tide rather than interpolating every 24 hours, but was still very clearly missing lots of tidal variation. Thus, we tested
+using a dynamic fourier decomposition on the means of our ocean regions, fitting the variation on these means with sinusoids, but through testing
+realized that this would perform better by using known tidal constituent frequencies to avoid overfitting the model and ensure the frequencies of the tides
+are correct. 
+
+Thus the model was formed by using 8 known tidal constituent frequencies, and fitting magnitudes for a given ocean region by using previous and subsequent data
+within the region. Then, these 8 fitted sinusoids would predict the variation in the mean at any given point in time, allowing our model to isolate
+the mean variation and simply linearly interpolate the anomalies (the remaining SSH after subtracting the means from the data). A comparison of our model
+to the ground truth with a 21 day gap of time omitted from the model is pictured below. 
+<img 
+  src="/good_example_face_4_a.png" 
+  alt="Results of Our Model" 
+  style={{ width: '60%', margin: '0 auto', display: 'block' }} 
+/>
+## Real SWOT data
+This success on simulation data needed to be verified using real SWOT data so we recreated the model
+to work for the real SWOT data. Initial testing was done on the CalVAL phase, which was a calibration period
+for the satellite in which it covered a limited swath of the ocean once every day. Using this real world data we 
+were able to optimize the number of tidal constituents to use, the optimal window size for averaging spatially to predict
+tidal magnitudes, and the method of inpainting the ocean spatially. The results of this approach on a real region (this region was located off the coast of California) are given below:
+<img 
+  src="/swot_full_domain_gapfill.png" 
+  alt="Results on Real-World data" 
+  style={{ width: '60%', margin: '0 auto', display: 'block' }} 
+/>
+
+
+## Challenges
+The challenges we faced mostly centered around the need to further understand the data to know how to best
+inpaint it. Initially, we thought there was no need for any further data processing and that deploying a large
+nueral network at the problem would be able to easily solve it, but this proved to be far from the case. We had to look
+in depth at how we could explain different changes in the data, and ultimately settled on our 2-phase physics-informed approach
+to predicting the SSH means. 
+
+The use of a mentor (Ryley McConkley) was great for helping to guide this data exploration, guiding me to a preprocessing stage that was
+ as simple as possible to facilitate a model that works and can be easily deployed. 
+
+## Next Steps
+The logical next step to this project is to train a generative model on the anomalies to better predict the anomaly variation now that we have
+accounted for tidal variation. This is necessitated by the linear interpolation clearly not being a sufficient approach to this problem, with large
+error in the data further from the input data. This problem will be easier to solve now that the tides are removed because the generative model will not have
+to account for the tides but rather can solve the easier problem of simply inpainting anomalies. 
+
+The model also will need to be further tested, with the real-world SWOT model only being tested on a single
+ocean region, and thus not necessarily representative of the entire ocean. However, this success on a single region
+at the very least highlights the utility of the model on some regions of the ocean, even if some regions with more complicated
+dynamics can't be explained by the model. 
+## Poster
+Here is a poster I presented summarizing the simulation-data side of the project:
+<iframe src="/final_presentation_inpainting.pdf" width="100%" height="600px" title="Research Poster"></iframe>
